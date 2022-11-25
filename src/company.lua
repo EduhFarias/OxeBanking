@@ -1,18 +1,29 @@
+local db = require('db')
+db.connect()
+
 local company = {}
 
-company.registerCompany = function(data)
+company.registerCompany = function(o, data)
 	-- salvar no banco as informações da operadora
 	print('registerCompany')
 end
 
-company.getCompanies = function()
+company.getCompanies = function(o)
 	-- retorna todas as operadoras cadastradas
 	print('getCompanies')
+	db.getAllCompanies()
 end
 
-company.removeCompany = function(data)
+company.getCompanyById = function(o, data)
+	print(data)
+	db.connect()
+	db.getCompanyById(data)
+end
+
+company.removeCompany = function(o, data)
 	-- remove a operadora cadastrada
 	print('removeCompany')
+	db.removeCompany(data['id'])
 end
 
 return company
